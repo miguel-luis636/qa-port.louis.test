@@ -30,7 +30,7 @@
 
 ---
 
-## CT-03 — Login com campos vazios
+## CT-03 — Login com email invalido
 
 | Campo                      | Descrição                                                           |
 | -------------------------- | ------------------------------------------------------------------- |
@@ -38,7 +38,7 @@
 | **Tipo**                   | Negativo                                                            |
 | **Objetivo**               | Validar obrigatoriedade dos campos                                  |
 | **Pré-condição**           | Nenhuma                                                             |
-| **Passos**                 | 1. Acessar login<br>2. Não preencher campos<br>3. Clicar em Sign In |
+| **Passos**                 | 1. Acessar login<br>2. preenhcer o email invalido e a senha correta<br>3. Clicar em Sign In |
 | **Resultado Esperado**     | Sistema não deve autenticar                                         |
 | **Critérios de Validação** | Permanecer na tela de login                                         |
 
@@ -56,41 +56,14 @@
 | **Resultado Esperado**     | Lista de repositórios exibida                                       |
 | **Critérios de Validação** | URL da aba repositories carregada corretamente                      |
 
----
-
-## CT-05 — Acesso a repositório existente
-
-| Campo                      | Descrição                                                |
-| -------------------------- | -------------------------------------------------------- |
-| **ID**                     | CT-05                                                    |
-| **Tipo**                   | Positivo                                                 |
-| **Objetivo**               | Validar abertura de repositório                          |
-| **Pré-condição**           | Usuário possuir repositórios                             |
-| **Passos**                 | 1. Acessar aba repositories<br>2. Selecionar repositório |
-| **Resultado Esperado**     | Tela do repositório exibida                              |
-| **Critérios de Validação** | Nome do repositório visível                              |
 
 ---
 
-## CT-06 — Navegação para aba Pull Requests
-
-| Campo                      | Descrição                              |
-| -------------------------- | -------------------------------------- |
-| **ID**                     | CT-06                                  |
-| **Tipo**                   | Positivo                               |
-| **Objetivo**               | Validar navegação até Pull Requests    |
-| **Pré-condição**           | Usuário autenticado                    |
-| **Passos**                 | 1. Acessar menu Pull Requests          |
-| **Resultado Esperado**     | Tela de Pull Requests exibida          |
-| **Critérios de Validação** | URL e conteúdo carregados corretamente |
-
----
-
-## CT-07 — Criação de novo repositório
+## CT-05 — Criação de novo repositório
 
 | Campo                      | Descrição                                                               |
 | -------------------------- | ----------------------------------------------------------------------- |
-| **ID**                     | CT-07                                                                   |
+| **ID**                     | CT-05                                                                   |
 | **Tipo**                   | Positivo                                                                |
 | **Objetivo**               | Validar criação de repositório                                          |
 | **Pré-condição**           | Usuário autenticado                                                     |
@@ -100,11 +73,11 @@
 
 ---
 
-## CT-08 — Criação de repositório com nome duplicado
+## CT-06 — Criação de repositório com nome duplicado
 
 | Campo                      | Descrição                                                  |
 | -------------------------- | ---------------------------------------------------------- |
-| **ID**                     | CT-08                                                      |
+| **ID**                     | CT-06                                                      |
 | **Tipo**                   | Negativo                                                   |
 | **Objetivo**               | Validar tratamento de repositório duplicado                |
 | **Pré-condição**           | Repositório já existente                                   |
@@ -114,11 +87,11 @@
 
 ---
 
-## CT-09 — Logout do sistema
+## CT-07 — Logout do sistema
 
 | Campo                      | Descrição                                        |
 | -------------------------- | ------------------------------------------------ |
-| **ID**                     | CT-09                                            |
+| **ID**                     | CT-07                                            |
 | **Tipo**                   | Positivo                                         |
 | **Objetivo**               | Validar logout do usuário                        |
 | **Pré-condição**           | Usuário autenticado                              |
@@ -127,14 +100,3 @@
 | **Critérios de Validação** | Redirecionamento para página pública             |
 
 ---
-
-## CT-10 — Acesso a rota autenticada após logout
-
-| Campo                  | Descrição                                    |
-| ---------------------- | -------------------------------------------- |
-| **ID**                 | CT-10                                        |
-| **Tipo**               | Alternativo                                  |
-| **Objetivo**           | Validar bloqueio de sessão após logout       |
-| **Pré-condição**       | Logout realizado                             |
-| **Passos**             | 1. Tentar acessar página privada após logout |
-| **Resultado Esperado** | Sistema deve solicitar autenticação          |
