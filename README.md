@@ -137,11 +137,38 @@ Obrigatório para o módulo `k6/browser` (utiliza Chromium):
 
 ## 🔐 Configuração de Variáveis de Ambiente
 
-Crie um arquivo `.env` dentro de `cypress-e2e/` e outro dentro de `k6/`:
+Crie um arquivo `.env` dentro de `cypress-e2e/` e outro dentro de `k6/`.
 
 ```env
-LOGIN_GITHUB_EMAIL=seu-email@exemplo.com
-LOGIN_GITHUB_PASSWORD=sua-senha
+LOGIN_GITHUB_EMAIL=miguelluisvagas@gmail.com
+LOGIN_GITHUB_PASSWORD=Geforcegtx1650/@
+```
+
+---
+
+### 🧪 Conta dedicada para testes
+
+Foi criada uma conta exclusiva para execução dos testes automatizados.
+
+Essa decisão foi tomada porque o GitHub é uma plataforma altamente dinâmica e pode alterar:
+
+* Estrutura da interface (UI)
+* Posições e comportamento de botões
+* Seletores HTML (classes, atributos e IDs)
+* Fluxos de autenticação e navegação
+* Mecanismos de segurança contra automação
+
+Essas mudanças podem impactar diretamente testes E2E, fazendo com que elementos deixem de ser encontrados mesmo sem alteração no código da aplicação.
+
+Por isso, o uso de uma conta dedicada garante:
+
+* Maior estabilidade nos testes
+* Isolamento de dados de produção
+* Redução de interferências externas
+* Execução consistente dos cenários automatizados
+
+---
+
 ```
 
 > ⚠️ **Nunca versione o arquivo `.env`.**  
@@ -166,10 +193,12 @@ LOGIN_GITHUB_PASSWORD=sua-senha
 ```bash
 # Dentro de cypress-e2e/
 
+cd cypress-e2e
+
 npm install           # instala dependências
 
 npm run test          # executa Cypress em modo headless (CI)
-npx cypress open      # abre interface visual interativa
+npx cypress open      # abre interface visual interativa e pode realizar os testes visualmente
 
 npm run merge         # consolida relatórios JSON do Mochawesome
 npm run generate      # gera relatório HTML final
@@ -184,7 +213,7 @@ Após execução, o relatório HTML final é gerado em:
 cypress/reports/final/
 ```
 
-Abra o arquivo `index.html` no navegador para visualizar os resultados.
+Abra o arquivo `index.html` no navegador para visualizar os resultados. ou use a extensao live server do vs code
 
 ---
 
@@ -201,7 +230,12 @@ Abra o arquivo `index.html` no navegador para visualizar os resultados.
 ### Executar
 
 ```bash
+
 # Dentro de k6/
+
+npm run test:k6
+
+caso der algum erro:
 
 k6 run tests/browser-script.js \
   --env LOGIN_GITHUB_EMAIL=seu@email.com \
@@ -211,7 +245,7 @@ k6 run tests/browser-script.js \
 Ou via script no `package.json`:
 
 ```bash
-npm run k6
+npm run test:k6
 ```
 
 ---
