@@ -6,7 +6,7 @@ module.exports = defineConfig({
   reporter: "mochawesome",
   reporterOptions: {
     reportDir: "cypress/reports/mochawesome",
-    overwrite: true,
+    overwrite: false,
     html: true,
     json: true,
   },
@@ -20,7 +20,6 @@ module.exports = defineConfig({
     baseUrl: "https://www.github.com",
     specPattern: "cypress/e2e/**/*.spec.ts",
     supportFile: "cypress/support/e2e.ts",
-
 
     setupNodeEvents(on, config) {
       return config;

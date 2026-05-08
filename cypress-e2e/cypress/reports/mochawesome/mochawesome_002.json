@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-05-08T19:15:26.301Z",
+    "end": "2026-05-08T19:15:53.122Z",
+    "duration": 26821,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "afe5acb6-7dd7-4eef-b25a-e31368d5a11c",
+      "title": "",
+      "fullFile": "cypress\\e2e\\repositories-interaction.spec.ts",
+      "file": "cypress\\e2e\\repositories-interaction.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "3454029d-83a6-429d-aef3-db3827712f15",
+          "title": "[Cenario-002] - Interação com os repositórios",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "[CT-04] — Navegação para aba Repositories",
+              "fullTitle": "[Cenario-002] - Interação com os repositórios [CT-04] — Navegação para aba Repositories",
+              "timedOut": null,
+              "duration": 10572,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.navigateToRepositories();\ncy.contains(\"a\", \"Pull requests\").click();\ncy.url().should(\"include\", \"/pulls\");",
+              "err": {},
+              "uuid": "6f2e5740-8090-4fe4-893e-3498a781a7dc",
+              "parentUUID": "3454029d-83a6-429d-aef3-db3827712f15",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "[CT-05] — Criação de novo repositório",
+              "fullTitle": "[Cenario-002] - Interação com os repositórios [CT-05] — Criação de novo repositório",
+              "timedOut": null,
+              "duration": 7787,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.xpath(\"//div[contains(@class,'flex-md-justify-end')]//a[@href='/new']\").should(\"be.visible\").click();\ncy.url().should(\"include\", \"/new\");\ncy.xpath(\"//input[@id='repository-name-input']\").should(\"be.visible\").type(`test-repo-${Date.now()}`);\ncy.contains(\"is available\").should(\"be.visible\");\ncy.xpath(\"//button[.//span[text()='Create repository']]\").should(\"be.visible\").click();",
+              "err": {},
+              "uuid": "fb1ca361-a878-4d30-9322-4ef91b7221f5",
+              "parentUUID": "3454029d-83a6-429d-aef3-db3827712f15",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "[CT-06] — Criação de repositório com nome duplicado",
+              "fullTitle": "[Cenario-002] - Interação com os repositórios [CT-06] — Criação de repositório com nome duplicado",
+              "timedOut": null,
+              "duration": 7186,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.xpath(\"//div[contains(@class,'flex-md-justify-end')]//a[@href='/new']\").should(\"be.visible\").click();\ncy.url().should(\"include\", \"/new\");\ncy.xpath(\"//input[@id='repository-name-input']\").should(\"be.visible\").type(`pull-test`);\ncy.contains(\"pull-test already exists in this account\").should(\"be.visible\");",
+              "err": {},
+              "uuid": "9ea759bc-e9e4-4517-88dd-ed668c085708",
+              "parentUUID": "3454029d-83a6-429d-aef3-db3827712f15",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6f2e5740-8090-4fe4-893e-3498a781a7dc",
+            "fb1ca361-a878-4d30-9322-4ef91b7221f5",
+            "9ea759bc-e9e4-4517-88dd-ed668c085708"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 25545,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "test:k6": "set K6_BROWSER_ENABLED=true&& k6 run tests/browser-script.js"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^11.0.0"
+  }
+}

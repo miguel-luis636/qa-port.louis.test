@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-05-08T19:14:55.760Z",
+    "end": "2026-05-08T19:15:09.324Z",
+    "duration": 13564,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "96c5ff5a-f2de-4041-8d20-c42cbe7fac5c",
+      "title": "",
+      "fullFile": "cypress\\e2e\\login.github.spec.ts",
+      "file": "cypress\\e2e\\login.github.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7dc1f3e8-d9c7-48a7-a0f0-e66047d2fa81",
+          "title": "[Cenario-001] - Autenticação e navegação",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "[CT-01] — Login com credenciais válidas",
+              "fullTitle": "[Cenario-001] - Autenticação e navegação [CT-01] — Login com credenciais válidas",
+              "timedOut": null,
+              "duration": 6244,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.loginGithub(Cypress.env(\"LOGIN_GITHUB_EMAIL\"), Cypress.env(\"LOGIN_GITHUB_PASSWORD\"));\ncy.get('[data-testid=\"github-avatar\"]').should(\"be.visible\").click();\ncy.get(`[title=\"miguel-testes\"]`).should(\"be.visible\");",
+              "err": {},
+              "uuid": "3ceacf5b-f0de-412a-99cb-f0e264f31a8e",
+              "parentUUID": "7dc1f3e8-d9c7-48a7-a0f0-e66047d2fa81",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "[CT-02] — Login com senha inválida",
+              "fullTitle": "[Cenario-001] - Autenticação e navegação [CT-02] — Login com senha inválida",
+              "timedOut": null,
+              "duration": 3301,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.loginGithub(Cypress.env(\"LOGIN_GITHUB_EMAIL\"), \"senha_invalida-1334\");\ncy.contains(\"Incorrect username or password\").should(\"be.visible\");",
+              "err": {},
+              "uuid": "d976c144-bc1d-4b01-82a5-8e8a43c2565b",
+              "parentUUID": "7dc1f3e8-d9c7-48a7-a0f0-e66047d2fa81",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "[CT-03] — Login com email inválido",
+              "fullTitle": "[Cenario-001] - Autenticação e navegação [CT-03] — Login com email inválido",
+              "timedOut": null,
+              "duration": 2214,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.loginGithub(\"email_invalido@gmail.com\", Cypress.env(\"LOGIN_GITHUB_PASSWORD\"));\ncy.contains(\"Incorrect username or password\").should(\"be.visible\");",
+              "err": {},
+              "uuid": "1169a370-fcf6-4b97-8a8d-5498b227e2b3",
+              "parentUUID": "7dc1f3e8-d9c7-48a7-a0f0-e66047d2fa81",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3ceacf5b-f0de-412a-99cb-f0e264f31a8e",
+            "d976c144-bc1d-4b01-82a5-8e8a43c2565b",
+            "1169a370-fcf6-4b97-8a8d-5498b227e2b3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 11759,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

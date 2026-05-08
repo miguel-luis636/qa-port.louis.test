@@ -17,5 +17,7 @@ describe("[Cenario-003] - Logout e finalização", () => {
     cy.url().should("eq", "https://github.com/");
 
     cy.contains("Sign in").should("be.visible");
+
+    cy.get('[data-testid="github-avatar"]').should("not.exist")
   });
 });
