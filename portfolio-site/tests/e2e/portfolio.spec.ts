@@ -85,7 +85,7 @@ test('foto carrega e ocupa toda a moldura', async ({ page }) => {
   await skipIntro(page);
   const photo = page.getByTestId('profile-photo');
   await expect(photo).toBeVisible();
-  await expect.poll(() => photo.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+  await expect.poll(() => photo.evaluate(img => img.complete && img.naturalWidth >= 300 && img.naturalHeight >= 375)).toBe(true);
   await expect(photo).toHaveCSS('object-fit', 'cover');
   const delta = await page.evaluate(() => {
     const image = document.querySelector('.profile-photo').getBoundingClientRect();
