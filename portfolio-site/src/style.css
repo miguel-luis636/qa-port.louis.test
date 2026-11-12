@@ -8,13 +8,13 @@
 @keyframes neonPulse{0%,100%{text-shadow:0 0 9px #12e4f544}50%{text-shadow:0 0 22px #12e4f599}}
 @keyframes gridDrift{from{background-position:0 0,0 0,0 0,0 0}to{background-position:0 0,0 0,36px 36px,36px 36px}}
 @keyframes borderGlow{0%,100%{box-shadow:0 12px 35px #0005,0 0 0 #13e1ef00}50%{box-shadow:0 12px 35px #0005,0 0 18px #13e1ef22}}
-body{animation:gridDrift 28s linear infinite}
+body{animation:none}
 .hero .status{animation:riseIn .65s ease both}
 .hero h1{animation:riseIn .8s .12s ease both}
 .hero-grid>div>p{animation:riseIn .8s .25s ease both}
 .hero .actions{animation:riseIn .8s .38s ease both}
-.hero h1 em{animation:neonPulse 4s ease-in-out infinite}
-.terminal{animation:riseIn .8s .3s ease both,borderGlow 5s 1.1s ease-in-out infinite}
+.hero h1 em{animation:none}
+.terminal{animation:riseIn .8s .3s ease both}
 .terminal p{opacity:0;animation:terminalReveal .45s ease forwards}
 .terminal p:nth-of-type(1){animation-delay:.65s}
 .terminal p:nth-of-type(2){animation-delay:1.05s}
@@ -110,8 +110,8 @@ main,.hero,.section,.hero-grid,.cards,.panel,.terminal{min-width:0}
 .boot-circuits,.circuit-overlay{pointer-events:none;position:absolute;inset:0;overflow:hidden}
 .boot-circuits{z-index:0}
 .boot-circuits svg,.circuit-overlay svg{width:100%;height:100%;display:block}
-.boot-circuits path,.circuit-overlay path{fill:none;stroke:#13e1ef;stroke-width:2;stroke-dasharray:14 18;filter:drop-shadow(0 0 7px #13e1ef88);animation:circuitFlow 12s linear infinite}
-.boot-circuits circle,.circuit-overlay circle{fill:#ed1dd7;filter:drop-shadow(0 0 9px #ed1dd7)}
+.boot-circuits path,.circuit-overlay path{fill:none;stroke:#13e1ef;stroke-width:2;stroke-dasharray:14 18;animation:circuitFlow 12s linear infinite}
+.boot-circuits circle,.circuit-overlay circle{fill:#ed1dd7;opacity:.9}
 .boot-circuits{opacity:.58}
 .circuit-overlay{position:fixed;z-index:0;opacity:.15}
 .circuit-overlay path{stroke-width:1.5;animation-duration:24s}
@@ -119,14 +119,14 @@ main,.hero,.section,.hero-grid,.cards,.panel,.terminal{min-width:0}
 @keyframes circuitFlow{to{stroke-dashoffset:-320}}
 @keyframes bootLine{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
 @keyframes bootExit{to{opacity:0;transform:scale(1.025)}}
-.boot h1{animation:riseIn .8s ease both,neonPulse 3s ease-in-out infinite}
+.boot h1{animation:riseIn .8s ease both}
 .boot-line{opacity:0;animation:bootLine .35s ease forwards}
 .boot-line:nth-of-type(2){animation-delay:.7s}
 .boot-line:nth-of-type(3){animation-delay:1.3s}
 .boot-line:nth-of-type(4){animation-delay:1.9s}
 .boot-line:nth-of-type(5){animation-delay:2.5s}
 .boot-line strong{color:#2aee9b}
-.boot .progress{width:100%;max-width:620px;transform-origin:left;animation:bootProgress 3.7s cubic-bezier(.2,.8,.2,1) both}
+.boot .progress{width:100%;max-width:620px;transform-origin:left;animation:bootProgress 2.6s cubic-bezier(.2,.8,.2,1) both}
 @keyframes bootProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .boot-skip{position:relative;z-index:2;margin:0 30px 25px}
 @media(max-width:600px){
@@ -140,4 +140,27 @@ main,.hero,.section,.hero-grid,.cards,.panel,.terminal{min-width:0}
  .boot h1,.boot-line,.boot .progress,.boot-circuits path,.circuit-overlay path{animation:none!important}
  .boot-line{opacity:1}
  .boot .progress{transform:none}
+}
+
+/* Performance: prioritize composited motion and skip offscreen painting */
+@media(prefers-reduced-motion:no-preference){
+ .section{content-visibility:auto;contain-intrinsic-size:auto 540px}
+ .section.is-visible{content-visibility:visible}
+}
+.circuit-overlay{opacity:.075}
+.circuit-overlay path{animation:none;stroke-dasharray:none}
+.cards .panel{box-shadow:0 5px 16px #0004}
+.cards .panel:hover{box-shadow:0 10px 22px #0006}
+@media(max-width:900px){
+ .topbar{backdrop-filter:none;-webkit-backdrop-filter:none}
+ .circuit-overlay{display:none}
+ .boot-circuits path{animation:none;stroke-dasharray:none}
+ .terminal{animation:riseIn .7s ease both}
+ .cards .panel:hover{box-shadow:0 5px 16px #0004}
+}
+@media(max-width:600px){
+ body{background:#080712}
+ .boot-circuits{opacity:.16}
+ .section.is-visible .cards .panel{animation-duration:.45s}
+ .hero h1{animation-duration:.5s}
 }
