@@ -246,3 +246,33 @@ main,.hero,.section,.hero-grid,.cards,.panel,.terminal{min-width:0}
 .profile-corner{z-index:3;right:14px;bottom:14px;padding:3px 6px;background:#080712a8}
 @media(max-width:900px){.profile-frame{width:min(100%,300px)}}
 @media(max-width:600px){.profile-frame{width:min(100%,260px);aspect-ratio:4/5}}
+
+/* Explicit motion override for Brave / OS reduced-motion: user chooses */
+.topbar .motion-toggle{flex:0 0 auto;padding:8px 10px;font-size:11px;border-color:#16d8ec;color:#16d8ec}
+.topbar .motion-toggle[aria-pressed="false"]{border-color:#a69eb9;color:#a69eb9}
+@media(max-width:900px){.topbar .motion-toggle{align-self:flex-end}}
+/* Overrides intentionally apply only after an explicit ON selection; respect OS by default */
+html.motion-on .boot-circuits path{animation:circuitCurrent 4s ease-in-out infinite!important}
+html.motion-on .boot-circuits circle{animation:circuitCurrent 3s ease-in-out infinite!important}
+html.motion-on .boot-line{opacity:0;animation:bootLine .35s ease forwards!important}
+html.motion-on .boot-line:nth-of-type(2){animation-delay:.7s!important}
+html.motion-on .boot-line:nth-of-type(3){animation-delay:1.3s!important}
+html.motion-on .boot-line:nth-of-type(4){animation-delay:1.9s!important}
+html.motion-on .boot-line:nth-of-type(5){animation-delay:2.5s!important}
+html.motion-on .boot .progress{animation:bootProgress 2.6s cubic-bezier(.2,.8,.2,1) both!important}
+html.motion-on .circuit-overlay path{animation:circuitCurrent 10s ease-in-out infinite!important}
+html.motion-on .circuit-overlay circle{animation:circuitCurrent 6s ease-in-out infinite!important}
+html.motion-on .hero h1{animation:riseIn .8s .12s ease both!important}
+html.motion-on .profile-frame{animation:photoEnter .8s ease both!important}
+html.motion-on .terminal p{opacity:0;animation:terminalReveal .45s ease forwards!important}
+html.motion-on .terminal p:nth-of-type(1){animation-delay:.35s!important}
+html.motion-on .terminal p:nth-of-type(2){animation-delay:.7s!important}
+html.motion-on .terminal p:nth-of-type(3){animation-delay:1.05s!important}
+html.motion-on .terminal p:nth-of-type(4){animation-delay:1.4s!important}
+html.motion-on .section.is-visible{animation:riseIn .75s cubic-bezier(.22,1,.36,1) both!important}
+html.motion-on .section.is-visible .cards .panel{animation:riseIn .65s cubic-bezier(.22,1,.36,1) both!important}
+@media(max-width:600px){html.motion-on .circuit-overlay{animation:none!important}}
+/* Manual OFF should stop continuous decorative motion, not hide essential content */
+html:not(.motion-on) .circuit-overlay,html:not(.motion-on) .circuit-overlay *,html:not(.motion-on) .boot-circuits *,html:not(.motion-on) .hero h1 em,html:not(.motion-on) .terminal p:last-of-type::after{animation:none!important}
+html:not(.motion-on) .boot-line,html:not(.motion-on) .terminal p{opacity:1!important;animation:none!important}
+html:not(.motion-on) .section,html:not(.motion-on) .section .panel,html:not(.motion-on) .profile-frame{animation:none!important;opacity:1!important}
