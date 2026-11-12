@@ -284,3 +284,6 @@ html:not(.motion-on) .section,html:not(.motion-on) .section .panel,html:not(.mot
 .scroll-top:hover,.scroll-top:focus-visible{background:#172b39;border-color:#f02ad6;color:#fff}
 @media(max-width:600px){.scroll-top{width:48px;height:48px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom))}.scroll-top>span:first-child{font-size:21px}}
 @media(prefers-reduced-motion:reduce){.scroll-top{animation:none}}
+
+/* Portrait presentation: natural-looking subtle tonal correction */
+.profile-frame .profile-photo{object-position:50% 43%;filter:contrast(1.055) saturate(1.035) brightness(1.018);image-rendering:auto}
