@@ -164,3 +164,26 @@ main,.hero,.section,.hero-grid,.cards,.panel,.terminal{min-width:0}
  .section.is-visible .cards .panel{animation-duration:.45s}
  .hero h1{animation-duration:.5s}
 }
+
+/* Lightweight ambient motion: opacity/transform only, no blur filters */
+@keyframes circuitBreathe{0%,100%{opacity:.38}50%{opacity:.75}}
+@keyframes ambientFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-12px,0)}}
+.circuit-overlay{display:block;opacity:.09;contain:paint;animation:ambientFloat 24s ease-in-out infinite}
+.circuit-overlay path{stroke-dasharray:none;animation:circuitBreathe 9s ease-in-out infinite;filter:none}
+.circuit-overlay path:nth-of-type(even){animation-delay:-4s}
+.boot-circuits path{filter:none;animation:circuitBreathe 6s ease-in-out infinite;stroke-dasharray:none}
+.boot-circuits circle,.circuit-overlay circle{filter:none}
+@media(max-width:900px){
+ .circuit-overlay{display:block;opacity:.045;animation:ambientFloat 35s ease-in-out infinite}
+ .circuit-overlay path{animation:circuitBreathe 14s ease-in-out infinite}
+ .boot-circuits path{animation:circuitBreathe 10s ease-in-out infinite}
+}
+@media(max-width:600px){
+ .circuit-overlay{opacity:.035;animation:none}
+ .circuit-overlay path{animation:circuitBreathe 18s ease-in-out infinite}
+ .boot-circuits{opacity:.12}
+ .boot-circuits path{animation:circuitBreathe 12s ease-in-out infinite}
+}
+@media(prefers-reduced-motion:reduce){
+ .circuit-overlay,.circuit-overlay path,.boot-circuits path{animation:none!important}
+}
