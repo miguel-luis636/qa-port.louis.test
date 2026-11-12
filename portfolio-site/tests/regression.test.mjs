@@ -40,14 +40,14 @@ test('admin auth callbacks handle optional Supabase client', () => {
 
 test('production build typechecks before bundling', () => {
   const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
-  assert.match(pkg.scripts.build, /tsc\\s+--noEmit\\s*&&\\s*vite\\s+build/);
-  assert.match(pkg.scripts['test:regression'], /npm run test\\s*&&\\s*npm run build/);
+  assert.match(pkg.scripts.build, /tsc\s+--noEmit\s*&&\s*vite\s+build/);
+  assert.match(pkg.scripts['test:regression'], /npm run test\s*&&\s*npm run build/);
 });
 
 test('missing Supabase credentials do not crash the admin screen', () => {
   const client = readFileSync(new URL('../src/supabase.ts', import.meta.url), 'utf8');
-  assert.match(client, /:\\s*null\\s*;/);
-  assert.match(app, /!supabase\\?<p>/);
+  assert.match(client, /:\s*null\s*;/);
+  assert.match(app, /!supabase\?<p>/);
 });
 
 test('all portfolio content types remain supported', () => {
