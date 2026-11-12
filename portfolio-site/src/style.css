@@ -197,3 +197,44 @@ main,.hero,.section,.hero-grid,.cards,.panel,.terminal{min-width:0}
 .profile-corner{position:absolute;bottom:17px;right:20px;color:#2aee9b;font-size:10px}
 @media(max-width:900px){.hero-identity{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}.profile-frame{width:100%}}
 @media(max-width:600px){.hero-identity{grid-template-columns:1fr}.profile-frame{width:min(100%,280px)}}
+
+/* Animation visibility refresh: vivid but GPU-friendly */
+@keyframes circuitCurrent{0%,100%{opacity:.48}50%{opacity:1}}
+@keyframes orbitFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-9px,0)}}
+@keyframes photoEnter{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.circuit-overlay{display:block;opacity:.35;animation:orbitFloat 19s ease-in-out infinite;contain:paint}
+.circuit-overlay svg{overflow:visible}
+.circuit-overlay path{stroke:#13dcef;stroke-width:2;stroke-dasharray:18 21;animation:circuitCurrent 7s ease-in-out infinite;filter:none}
+.circuit-overlay circle{fill:#f42bd6;opacity:.8;animation:circuitCurrent 4s ease-in-out infinite}
+.circuit-overlay path:nth-of-type(even){animation-delay:-3s}
+.boot-circuits{opacity:.52}
+.boot-circuits path{stroke-dasharray:14 18;animation:circuitCurrent 4s ease-in-out infinite}
+.boot-circuits circle{animation:circuitCurrent 3s ease-in-out infinite}
+.hero h1 em{animation:neonPulse 6s ease-in-out infinite}
+.profile-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:center 28%;border-radius:2px}
+.profile-frame{overflow:hidden;animation:photoEnter .9s .28s cubic-bezier(.22,1,.36,1) both;box-shadow:0 0 14px #12dcef21}
+.profile-frame:hover{box-shadow:0 0 20px #12dcef55}
+.topbar .replay-intro{flex:0 0 auto;padding:8px 11px;font-size:11px;border-color:#e51ccf;color:#f665dc}
+.section{content-visibility:visible;contain-intrinsic-size:none}
+@media(prefers-reduced-motion:no-preference){
+ .section{animation:none;opacity:1;content-visibility:visible}
+ .section.is-visible{animation:riseIn .85s cubic-bezier(.22,1,.36,1) both}
+ .section.is-visible .cards .panel{animation:riseIn .65s cubic-bezier(.22,1,.36,1) both}
+}
+@media(max-width:900px){
+ .circuit-overlay{opacity:.24;animation:orbitFloat 28s ease-in-out infinite}
+ .circuit-overlay path{animation-duration:11s}
+ .topbar .replay-intro{align-self:flex-end}
+}
+@media(max-width:600px){
+ .circuit-overlay{opacity:.16;animation:none}
+ .circuit-overlay path{stroke-width:2.5;animation:circuitCurrent 12s ease-in-out infinite}
+ .boot-circuits{opacity:.34}
+ .boot-circuits path{animation-duration:8s}
+ .hero h1 em{animation:none}
+ .profile-frame{animation:photoEnter .55s ease both}
+}
+@media(prefers-reduced-motion:reduce){
+ .circuit-overlay,.circuit-overlay path,.circuit-overlay circle,.boot-circuits path,.boot-circuits circle,.hero h1 em,.profile-frame{animation:none!important}
+ .section,.section.is-visible,.section.is-visible .cards .panel{animation:none!important;opacity:1!important}
+}
