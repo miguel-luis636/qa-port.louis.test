@@ -129,3 +129,36 @@ test('admin não exibe intro pública', async ({ page }) => {
   await expect(page.getByTestId('boot-intro')).toHaveCount(0);
   await expect(page.locator('.admin')).toBeVisible();
 });
+
+test('Brave-like reduced motion can be explicitly overridden by the visitor', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await skipIntro(page);
+  const toggle = page.getByTestId('motion-toggle');
+  await expect(toggle).toContainText('OFF');
+  await toggle.click();
+  await expect(toggle).toContainText('ON');
+  await expect(toggle).toHaveAttribute('aria-pressed','true');
+  await expect(page.locator('html')).toHaveClass(/motion-on/);
+  await page.getByTestId('replay-intro').click();
+  await expect(page.locator('.boot-circuits path')).not.toHaveCSS('animation-name','none');
+  await page.getByRole('button',{name:/PULAR INTRO/i}).click();
+  await expect(page.getByTestId('circuit-overlay').locator('path')).not.toHaveCSS('animation-name','none');
+  await page.reload();
+  await skipIntro(page);
+  await expect(page.getByTestId('motion-toggle')).toContainText('ON');
+  await page.getByTestId('motion-toggle').click();
+  await expect(page.locator('html')).not.toHaveClass(/motion-on/);
+  await expect(page.getByTestId('circuit-overlay').locator('path')).toHaveCSS('animation-name','none');
+});
+
+test('manual animations switch can turn motion OFF even without OS reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/');
+  await skipIntro(page);
+  const toggle = page.getByTestId('motion-toggle');
+  await expect(toggle).toContainText('ON');
+  await toggle.click();
+  await expect(toggle).toContainText('OFF');
+  await expect(page.getByTestId('circuit-overlay').locator('path')).toHaveCSS('animation-name','none');
+});
