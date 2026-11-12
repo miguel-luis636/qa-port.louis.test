@@ -91,7 +91,9 @@ test('circuits animate without intercepting input', () => {
 test('reduced motion keeps the interface usable', () => {
   assert.match(css, /prefers-reduced-motion:reduce/);
   assert.match(css, /\.boot-circuits path[^}]*animation:none!important/s);
-  assert.doesNotMatch(app, /matchMedia\([^)]*prefers-reduced-motion/);
+  assert.match(app, /matchMedia\('\(prefers-reduced-motion: reduce\)'\)/);
+  assert.match(app, /data-testid="motion-toggle"/);
+  assert.match(css, /html\.motion-on \.boot-circuits path/);
 });
 
 test('photo and browser icon are configured', () => {
