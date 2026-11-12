@@ -238,3 +238,11 @@ main,.hero,.section,.hero-grid,.cards,.panel,.terminal{min-width:0}
  .circuit-overlay,.circuit-overlay path,.circuit-overlay circle,.boot-circuits path,.boot-circuits circle,.hero h1 em,.profile-frame{animation:none!important}
  .section,.section.is-visible,.section.is-visible .cards .panel{animation:none!important;opacity:1!important}
 }
+
+/* Correct portrait sizing: fill the full frame instead of leaving empty space */
+.profile-frame{width:min(100%,300px);aspect-ratio:4/5;min-height:0;padding:0;display:block;isolation:isolate}
+.profile-frame .profile-photo{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:50% 45%;border-radius:0}
+.profile-frame::before{z-index:2;inset:7px}
+.profile-corner{z-index:3;right:14px;bottom:14px;padding:3px 6px;background:#080712a8}
+@media(max-width:900px){.profile-frame{width:min(100%,300px)}}
+@media(max-width:600px){.profile-frame{width:min(100%,260px);aspect-ratio:4/5}}
