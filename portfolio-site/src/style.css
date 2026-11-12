@@ -187,3 +187,13 @@ main,.hero,.section,.hero-grid,.cards,.panel,.terminal{min-width:0}
 @media(prefers-reduced-motion:reduce){
  .circuit-overlay,.circuit-overlay path,.boot-circuits path{animation:none!important}
 }
+
+/* Portrait slot: replace placeholder with a real photo later */
+.hero-identity{display:grid;gap:18px;min-width:0}
+.profile-frame{position:relative;width:min(100%,320px);aspect-ratio:1.15;margin-inline:auto;padding:10px;border:1px solid #16d8ec88;background:linear-gradient(135deg,#16d8ec18,#e51ccf0c);clip-path:polygon(0 0,92% 0,100% 9%,100% 100%,8% 100%,0 91%)}
+.profile-frame::before{content:'';position:absolute;inset:5px;border:1px solid #e51ccf55;pointer-events:none}
+.profile-placeholder{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:linear-gradient(140deg,#101526,#191023);color:#87b7c7;text-align:center;font-size:10px;letter-spacing:1px}
+.profile-symbol{font-family:'Chakra Petch',sans-serif;font-size:clamp(60px,7vw,92px);font-weight:700;line-height:1;color:#14d9e9;text-shadow:2px 2px #ed1dd7}
+.profile-corner{position:absolute;bottom:17px;right:20px;color:#2aee9b;font-size:10px}
+@media(max-width:900px){.hero-identity{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}.profile-frame{width:100%}}
+@media(max-width:600px){.hero-identity{grid-template-columns:1fr}.profile-frame{width:min(100%,280px)}}
