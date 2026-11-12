@@ -40,3 +40,66 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
  .actions a,button,.cards .panel,.chips span,.topbar nav a,.topbar nav a::after{transition:none!important}
  .actions a:hover,button:hover,.cards .panel:hover,.chips span:hover{transform:none}
 }
+
+/* Smooth section reveal and adaptable layouts */
+@media(prefers-reduced-motion:no-preference){
+ .section{animation:none;opacity:1}
+ .section.is-visible{animation:riseIn .8s cubic-bezier(.22,1,.36,1) both}
+ .cards .panel{animation:none}
+ .section.is-visible .cards .panel{animation:riseIn .7s cubic-bezier(.22,1,.36,1) both}
+ .section.is-visible .cards .panel:nth-child(2){animation-delay:.08s}
+ .section.is-visible .cards .panel:nth-child(3){animation-delay:.16s}
+ .section.is-visible .cards .panel:nth-child(n+4){animation-delay:.2s}
+}
+html{scroll-padding-top:110px}
+body{overflow-x:hidden}
+main,.hero,.section,.hero-grid,.cards,.panel,.terminal{min-width:0}
+.hero h1,.section h2,.cards h3{overflow-wrap:anywhere}
+.terminal{overflow-wrap:anywhere}
+.cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1100px){
+ .topbar{padding:16px 24px}
+ .topbar nav{gap:12px}
+ .hero-grid{gap:28px}
+ .hero,.section{padding-left:clamp(20px,4vw,40px);padding-right:clamp(20px,4vw,40px)}
+}
+@media(max-width:900px){
+ .topbar{position:relative;align-items:flex-start;gap:14px}
+ .topbar nav{width:100%;display:flex;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;padding-bottom:8px;scrollbar-width:thin}
+ .topbar nav a{flex:0 0 auto}
+ .hero{padding-top:65px}
+ .hero-grid{grid-template-columns:1fr;gap:32px}
+ .terminal{max-width:700px;width:100%}
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .admin-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+ .topbar{padding:15px 18px}
+ .brand{font-size:14px}
+ .brand span{font-size:11px}
+ .hero,.section{padding:58px 18px}
+ .hero{padding-top:55px}
+ .hero h1{font-size:clamp(34px,9vw,52px);line-height:1.12}
+ .section h2{font-size:clamp(30px,8vw,44px)}
+ .hero-grid{gap:22px}
+ .cards{grid-template-columns:1fr}
+ .terminal,.panel{padding:20px}
+ .actions{gap:10px}
+ .actions a{width:100%;text-align:center}
+ .admin{padding:25px 16px}
+ .item{flex-wrap:wrap}
+ .tabs{gap:8px}
+ .tabs button{padding:9px}
+}
+@media(max-width:360px){
+ .hero h1{font-size:32px}
+ .brand{white-space:normal}
+ .terminal,.panel{padding:16px}
+ .eyebrow,.status{letter-spacing:1.5px}
+}
+@media(hover:none){
+ .cards .panel:hover,.actions a:hover,button:hover,.chips span:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .section,.section.is-visible,.cards .panel,.section.is-visible .cards .panel{animation:none!important;opacity:1!important}
+}
