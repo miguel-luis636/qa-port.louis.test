@@ -24,4 +24,14 @@ jobs:
         with:
           node-version: '22'
       - run: npm install --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
       - run: npm run test:regression
+      - name: Upload Playwright reports on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-playwright-report
+          path: |
+            portfolio-site/playwright-report/
+            portfolio-site/test-results/
+          retention-days: 7
