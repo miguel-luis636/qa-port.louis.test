@@ -276,3 +276,11 @@ html.motion-on .section.is-visible .cards .panel{animation:riseIn .65s cubic-bez
 html:not(.motion-on) .circuit-overlay,html:not(.motion-on) .circuit-overlay *,html:not(.motion-on) .boot-circuits *,html:not(.motion-on) .hero h1 em,html:not(.motion-on) .terminal p:last-of-type::after{animation:none!important}
 html:not(.motion-on) .boot-line,html:not(.motion-on) .terminal p{opacity:1!important;animation:none!important}
 html:not(.motion-on) .section,html:not(.motion-on) .section .panel,html:not(.motion-on) .profile-frame{animation:none!important;opacity:1!important}
+
+/* Back-to-top: lightweight accessible fixed action */
+.scroll-top{position:fixed;right:clamp(16px,3vw,32px);bottom:calc(22px + env(safe-area-inset-bottom));z-index:30;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0;width:56px;height:56px;padding:7px;border:1px solid #19ddea;color:#2ff0f4;background:#100d1fee;box-shadow:0 4px 18px #0008;clip-path:polygon(0 0,86% 0,100% 14%,100% 100%,14% 100%,0 86%);animation:riseIn .35s ease both}
+.scroll-top>span:first-child{font-size:24px;line-height:1}
+.scroll-top-label{font-size:9px;letter-spacing:2px}
+.scroll-top:hover,.scroll-top:focus-visible{background:#172b39;border-color:#f02ad6;color:#fff}
+@media(max-width:600px){.scroll-top{width:48px;height:48px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom))}.scroll-top>span:first-child{font-size:21px}}
+@media(prefers-reduced-motion:reduce){.scroll-top{animation:none}}
