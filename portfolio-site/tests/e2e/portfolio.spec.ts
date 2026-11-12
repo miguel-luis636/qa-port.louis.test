@@ -162,3 +162,27 @@ test('manual animations switch can turn motion OFF even without OS reduced motio
   await expect(toggle).toContainText('OFF');
   await expect(page.getByTestId('circuit-overlay').locator('path')).toHaveCSS('animation-name','none');
 });
+
+test('botão voltar ao topo aparece ao rolar e retorna ao início', async ({page}) => {
+  await page.goto('/');
+  await skipIntro(page);
+  const button=page.getByTestId('scroll-top');
+  await expect(button).toHaveCount(0);
+  await page.locator('#contact').scrollIntoViewIfNeeded();
+  await expect(button).toBeVisible();
+  await expect(button).toHaveAttribute('aria-label','Voltar ao topo');
+  await button.click();
+  await expect.poll(()=>page.evaluate(()=>scrollY),{timeout:5000}).toBeLessThan(20);
+  await expect(button).toHaveCount(0);
+});
+
+test('voltar ao topo respeita movimento reduzido sem quebrar a navegação',async ({page})=>{
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.goto('/');
+  await skipIntro(page);
+  await page.locator('#contact').scrollIntoViewIfNeeded();
+  const button=page.getByTestId('scroll-top');
+  await expect(button).toBeVisible();
+  await button.click();
+  await expect.poll(()=>page.evaluate(()=>scrollY)).toBeLessThan(20);
+});
