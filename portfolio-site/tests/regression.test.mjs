@@ -112,3 +112,12 @@ test('real-browser regression includes desktop, mobile, interactions and viewpor
   }
   assert.match(pkg.scripts['test:regression'], /npm run test:e2e/);
 });
+
+test('scroll-to-top uses passive event subscription and cleans up after itself',()=>{
+  assert.match(app,/addEventListener\('scroll',handleScroll,\{passive:true\}\)/);
+  assert.match(app,/removeEventListener\('scroll',handleScroll\)/);
+  assert.match(app,/data-testid="scroll-top"/);
+  assert.match(app,/aria-label="Voltar ao topo"/);
+  assert.match(app,/window\.scrollTo\(\{top:0,behavior:motionOn\?'smooth':'auto'\}\)/);
+  assert.match(css,/\.scroll-top\{/);
+});
