@@ -103,3 +103,41 @@ main,.hero,.section,.hero-grid,.cards,.panel,.terminal{min-width:0}
 @media(prefers-reduced-motion:reduce){
  .section,.section.is-visible,.cards .panel,.section.is-visible .cards .panel{animation:none!important;opacity:1!important}
 }
+
+/* Circuit traces, cinematic boot sequence, and scroll progress */
+.boot{position:relative;isolation:isolate;overflow:hidden}
+.boot-content{position:relative;z-index:2;width:min(700px,100%);padding:30px}
+.boot-circuits,.circuit-overlay{pointer-events:none;position:absolute;inset:0;overflow:hidden}
+.boot-circuits{z-index:0}
+.boot-circuits svg,.circuit-overlay svg{width:100%;height:100%;display:block}
+.boot-circuits path,.circuit-overlay path{fill:none;stroke:#13e1ef;stroke-width:2;stroke-dasharray:14 18;filter:drop-shadow(0 0 7px #13e1ef88);animation:circuitFlow 12s linear infinite}
+.boot-circuits circle,.circuit-overlay circle{fill:#ed1dd7;filter:drop-shadow(0 0 9px #ed1dd7)}
+.boot-circuits{opacity:.58}
+.circuit-overlay{position:fixed;z-index:0;opacity:.15}
+.circuit-overlay path{stroke-width:1.5;animation-duration:24s}
+.topbar,main,footer{position:relative;z-index:1}
+@keyframes circuitFlow{to{stroke-dashoffset:-320}}
+@keyframes bootLine{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bootExit{to{opacity:0;transform:scale(1.025)}}
+.boot h1{animation:riseIn .8s ease both,neonPulse 3s ease-in-out infinite}
+.boot-line{opacity:0;animation:bootLine .35s ease forwards}
+.boot-line:nth-of-type(2){animation-delay:.7s}
+.boot-line:nth-of-type(3){animation-delay:1.3s}
+.boot-line:nth-of-type(4){animation-delay:1.9s}
+.boot-line:nth-of-type(5){animation-delay:2.5s}
+.boot-line strong{color:#2aee9b}
+.boot .progress{width:100%;max-width:620px;transform-origin:left;animation:bootProgress 3.7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes bootProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.boot-skip{position:relative;z-index:2;margin:0 30px 25px}
+@media(max-width:600px){
+ .boot-content{padding:20px}
+ .boot h1{font-size:clamp(36px,11vw,62px)}
+ .boot-line{font-size:clamp(11px,3.3vw,15px);overflow-wrap:anywhere}
+ .boot-circuits{opacity:.3}
+ .circuit-overlay{opacity:.08}
+}
+@media(prefers-reduced-motion:reduce){
+ .boot h1,.boot-line,.boot .progress,.boot-circuits path,.circuit-overlay path{animation:none!important}
+ .boot-line{opacity:1}
+ .boot .progress{transform:none}
+}
