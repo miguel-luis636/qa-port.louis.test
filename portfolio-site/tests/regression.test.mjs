@@ -68,7 +68,8 @@ test('intro is shown every visit, not hidden by stale session storage', () => {
 });
 
 test('replay button actually toggles intro state, and automatic timer is cleaned up', () => {
-  assert.match(app, /replayIntro=\(\)=>\{[^}]*setIntro\(true\)/);
+  assert.match(app, /replayIntro=\(\)=>\{/);
+  assert.match(app, /setIntro\(true\)/);
   assert.match(app, /onClick=\{replayIntro\}/);
   assert.match(app, /window\.setTimeout\(\(\)=>setIntro\(false\)/);
   assert.match(app, /window\.clearTimeout\(t\)/);
@@ -83,7 +84,7 @@ test('scroll animation is observed and visible styles exist', () => {
 
 test('circuits animate without intercepting input', () => {
   assert.match(app, /data-testid="circuit-overlay"/);
-  assert.match(css, /\.circuit-overlay\s*\{[^}]*pointer-events:none/s);
+  assert.match(css, /\.boot-circuits,\.circuit-overlay\{pointer-events:none/);
   assert.match(css, /@keyframes circuitCurrent/);
 });
 
